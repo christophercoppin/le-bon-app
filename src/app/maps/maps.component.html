@@ -1,0 +1,56 @@
+<div class="navigation">
+  <div class="bloc-carte">
+    <div #map class="map"></div>
+    <div class="loading-map" *ngIf="mapLoading"><img src="../../assets/loader.png" alt=""></div>
+
+    <app-restaurant-search
+      class="filter"
+      (actualFilter)="setFilter($event)"
+      [filterResult]="restaurantsVisibles.length"
+    ></app-restaurant-search>
+    <div class="init-position" (click)="setPosition()">
+      <fa-icon [icon]="faMapMarker" size="2x"></fa-icon>
+    </div>
+    <div class="add-restaurant" (click)="activeClickOnMap(true)">
+      <fa-icon [icon]="faAdd" size="2x"></fa-icon>
+    </div>
+    <app-info-window
+      *ngIf="this.restaurantService.newRestaurant !== undefined"
+      (newRestaurant)="saveNewRestaurant($event)"
+      (cancelAddRestaurant)="cancelNewRestaurant($event)"
+      [clickOnMapPositionAddress]="clickOnMapPositionAddress"
+      class="info-window"
+    ></app-info-window>
+    <div class="messages" *ngIf="filter.filterActive || (clickOnMapSelectPosition && this.restaurantService.newRestaurant === undefined)">
+      <div *ngIf="clickOnMapSelectPosition && this.restaurantService.newRestaurant === undefined" class="ask-for-click">
+        <fa-icon class="info-icon" [icon]="faInfoCircle"></fa-icon> Cliquez sur la carte pour
+        positionner le nouveau restaurant
+      </div>
+
+      <div
+        class="choose-min-star"
+        *ngIf="filter.filterActive && !filter.setInterval"
+      >
+        <fa-icon class="info-icon" [icon]="faInfoCircle"></fa-icon> Sélectionner le minimum
+        d'étoile à appliquer au filtre
+      </div>
+      <div
+        class="choose-max-star"
+        *ngIf="filter.filterActive && filter.setInterval"
+      >
+        <fa-icon class="info-icon" [icon]="faInfoCircle"></fa-icon> Sélectionner le maximum
+        d'étoile à appliquer au filtre
+      </div>
+    </div>
+  </div>
+
+  <div class="restaurants">
+    <app-restaurants
+      [clickOnMapAddress]="clickOnMapPositionAddress"
+      [positionMarker]="clickOnMapPositionMarker"
+      [restaurants]="restaurantsVisibles"
+      (selectedRestaurant)="talkBack($event)"
+      (activeClickOnMap)="activeClickOnMap($event)"
+    ></app-restaurants>
+  </div>
+</div>

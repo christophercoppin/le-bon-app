@@ -1,0 +1,84 @@
+<div *ngIf="restaurantService.selectedRestaurant">
+  <img
+    class="restaurant-detail-image"
+    src="https://maps.googleapis.com/maps/api/streetview?size=300x150&location={{
+      restaurantService.selectedRestaurant.lat
+    }},{{
+      restaurantService.selectedRestaurant.long
+    }}&key=AIzaSyBVEp-IBuwZ89IFU305U388ctFMNlJaou8"
+    alt="Streetview image"
+  />
+  <ul>
+    <li
+      class="ratings"
+      *ngFor="let rating of restaurantService.selectedRestaurant.ratings"
+      [class.bad-rating]="rating.stars < 3"
+    >
+      <div class="rating-header">
+        <div class="rating-name">{{ rating.name }}</div>
+        <div class="rating-star">
+          {{ restaurantService.setStars(undefine, rating.stars) }}
+        </div>
+      </div>
+      <p>
+        {{ rating.date.toLocaleDateString() }}
+      </p>
+      <p>
+        {{ rating.comment }}
+      </p>
+    </li>
+  </ul>
+  <div>
+    <label for="commentaire"
+      >Votre commentaire:
+      <div class="rating">
+        <div>
+          <span
+            class="numberOfStars star-1"
+            (mouseover)="hoverStar($event, 1)"
+            (mouseout)="mouseOut()"
+            (click)="onClick(1)"
+          ></span>
+          <span
+            class="numberOfStars star-2"
+            (mouseover)="hoverStar($event, 2)"
+            (mouseout)="mouseOut()"
+            (click)="onClick(2)"
+          ></span>
+          <span
+            class="numberOfStars star-3"
+            (mouseover)="hoverStar($event, 3)"
+            (mouseout)="mouseOut()"
+            (click)="onClick(3)"
+          ></span>
+          <span
+            class="numberOfStars star-4"
+            (mouseover)="hoverStar($event, 4)"
+            (mouseout)="mouseOut()"
+            (click)="onClick(4)"
+          ></span>
+          <span
+            class="numberOfStars star-5"
+            (mouseover)="hoverStar($event, 5)"
+            (mouseout)="mouseOut()"
+            (click)="onClick(5)"
+          ></span>
+        </div>
+      </div> </label
+    ><br />
+    <input type="text" placeholder="Votre pseudo" size="40" maxlength="40" #pseudo />
+    <textarea
+      type="text"
+      maxlength="1000"
+      id="commentaire"
+      class="commentaire"
+      #comment
+      placeholder="Votre commentaire en quelques mots"
+      required
+    ></textarea
+    ><br />
+    <button type="submit" [disabled]="activeFilter === 0" class="add-comment" (click)="addRating(pseudo.value, comment.value); comment.value = ''; pseudo.value = ''">
+      Envoyer
+    </button>
+  </div>
+</div>

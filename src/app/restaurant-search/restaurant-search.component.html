@@ -1,0 +1,15 @@
+<div class="search">
+  <p>
+  <span *ngIf="!filter.filterActive">
+      Filtrer : <fa-icon class="search-icon" [icon]="faSearchLocation" (click)="initFilter(true)"></fa-icon>
+    </span>
+    <span *ngIf="filter.filterActive">
+      <span class="numberOfStars star-1 full-star" (mouseover)="hoverStar($event, 1)" (mouseout)="mouseOut($event, 1)" (click)="onClick(1)"></span>
+      <span class="numberOfStars star-2 full-star" (mouseover)="hoverStar($event, 2)" (mouseout)="mouseOut($event, 2)" (click)="onClick(2)"></span>
+      <span class="numberOfStars star-3 full-star" (mouseover)="hoverStar($event, 3)" (mouseout)="mouseOut($event, 3)" (click)="onClick(3)"></span>
+      <span class="numberOfStars star-4 full-star" (mouseover)="hoverStar($event, 4)" (mouseout)="mouseOut($event, 4)" (click)="onClick(4)"></span>
+      <span class="numberOfStars star-5 full-star" (mouseover)="hoverStar($event, 5)" (mouseout)="mouseOut($event, 5)" (click)="onClick(5)"></span>
+    <span> ( {{ filterResult }} )</span> <fa-icon class="close-icon" [icon]="faWindowClose" (click)="initFilter(false)"></fa-icon>
+    </span>
+  </p>
+</div>

@@ -1,0 +1,108 @@
+.map {
+    height: 70vh;
+  }
+
+.restaurants {
+    flex: 1;
+    height: 70vh;
+    overflow: scroll;
+    margin-left: 10px;
+    box-shadow: 2px 2px 5px grey;
+}
+
+.navigation {
+        display: flex;
+        max-height: 70vh;
+}
+
+.bloc-carte {
+    flex: 1;
+    position: relative;
+
+    & .filter {
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        background-color: #fff;
+        padding: 0 10px;
+        border-radius: 3px;
+    }
+
+    & .init-position {
+        position: absolute;
+        bottom: 30px;
+        left: 5px;
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 50%;
+        border: 1px solid black;
+
+        &:hover {
+            color: red;
+        }
+    }
+
+    & .add-restaurant {
+        position: absolute;
+        bottom: 30px;
+        right: 5px;
+        background-color: #fff;
+        padding: 10px;
+        border-radius: 50%;
+        border: 1px solid black;
+
+        &:hover {
+            color: blueviolet;
+            border-color: blueviolet;
+        }
+    }
+
+    & .info-window,
+    & .messages {
+        background-color: #fff;
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        padding: 10px;
+
+        & .info-icon {
+            color: gray;
+        }
+        
+    }
+
+    & .messages {
+        border-radius: 100px;
+    }
+
+    & .loading-map {
+        background-color: #fff;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 10px;
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        & img {
+            animation: 1s infinite loader linear;
+            display: block;  
+        }
+        
+    }
+
+}
+
+@keyframes loader {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(-360deg);
+    }
+}

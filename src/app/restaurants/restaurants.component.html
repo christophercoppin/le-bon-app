@@ -1,0 +1,14 @@
+<div class="liste-restaurant">
+  <div *ngFor="let restaurant of restaurants; let i = index" class="restaurant {{'restaurant-' + restaurant.placeId}}" (click)="talkBack(restaurant)" [class.selected]="restaurant === restaurantService.selectedRestaurant" [class.bad-rating]="restaurant.rating < 3 && restaurant.rating > 0">
+    <div #header class="header">
+      <h3>{{restaurant.restaurantName}}</h3>
+      <div class="stars">{{restaurantService.setStars(undefined,restaurant.rating)}}</div>
+    </div>
+    <div class="address">{{restaurant.address}}</div>
+    <app-restaurant-details [element]="header" *ngIf="restaurant === restaurantService.selectedRestaurant"></app-restaurant-details>
+  </div>
+  
+</div>
+
+
+    
