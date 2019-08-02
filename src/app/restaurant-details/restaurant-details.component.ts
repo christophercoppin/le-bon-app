@@ -25,14 +25,18 @@ export class RestaurantDetailsComponent implements OnInit {
       this.restaurantService.service.getDetails(request, (place, status) => {
         if (status == google.maps.places.PlacesServiceStatus.OK) {
           place.reviews.sort(function(a, b) {
+            //@ts-ignore
             return (a.time as number) - (b.time as number);
           });
           place.reviews.reverse();
           for (let review of place.reviews) {
             const saveRating: Rating = {
               name: review.author_name,
+              //@ts-ignore
               date: new Date((review.time as number) * 1000),
+              //@ts-ignore
               relativeTimeDescription: review.relative_time_description,
+              //@ts-ignore
               stars: review.rating,
               comment: review.text
             };
