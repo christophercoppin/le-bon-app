@@ -37,7 +37,7 @@ jobs:
             git commit -m 'Add dist folder'
             git status
             git remote add production ssh://${USER_NAME}@${HOSTNAME}/var/repo/lebonapp.git
-            git push production master
+            git push --force production master
             exit
 workflows:
   version: 2
